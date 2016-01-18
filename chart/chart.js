@@ -1,68 +1,51 @@
-$(function () {
+angular.module('pieChartPOC')
 
-    document.ontouchmove = function(event){
-          event.preventDefault();
-    }
+.controller('ChartCtrl', function($scope){
 
-    $(document).ready(function () {
+	console.log('Contrller connected!');
 
-        $('.exit').on('touchstart click', function(){
-            mflyCommands.close();
-        })
-        // $("#loading").show();
+	initDataset();
 
-        initDataset();
-    });
+	function initDataset() {
 
-});
+	    ds = new Miso.Dataset({
+	        importer: Miso.Dataset.Importers.GoogleSpreadsheet,
+	        parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
+	        key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
+	        worksheet: "1"
+	    });
 
-$(document).bind("mobileinit", function () {
-    $.event.special.swipe.horizontalDistanceThreshold = 130;
-});
+	    ds.fetch().done(fetchSuccess);
 
-function initDataset() {
+	}   
 
-    ds = new Miso.Dataset({
-        importer: Miso.Dataset.Importers.GoogleSpreadsheet,
-        parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
-        key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
-        worksheet: "1"
-    });
+	function getSales(row) {
+	    var dataArr = [];
+	    for (var i = 0; i < row.length; i++) {
+	        var obj = {
+	            name: row[i].Supplier, 
+	            y: row[i].PerShare
+	        }
+	        dataArr.push(obj);
+	    }
+	    return dataArr;
+	} 
 
-    ds.fetch().done(fetchSuccess);
+	function getUnits(row) {
+	    var dataArr = [];
+	    for (var i = 0; i < row.length; i++) {
+	        var obj = {
+	            name: row[i].Supplier, 
+	            y: row[i].UnitShare
+	        }
+	        dataArr.push(obj);
+	    }
+	    return dataArr;
+	}
 
-}   
-
-function getSales(row) {
-    var dataArr = [];
-    for (var i = 0; i < row.length; i++) {
-        var obj = {
-            name: row[i].Supplier, 
-            y: row[i].PerShare
-        }
-        dataArr.push(obj);
-    }
-    return dataArr;
-} 
-
-function getUnits(row) {
-    var dataArr = [];
-    for (var i = 0; i < row.length; i++) {
-        var obj = {
-            name: row[i].Supplier, 
-            y: row[i].UnitShare
-        }
-        dataArr.push(obj);
-    }
-    return dataArr;
-}
-
-function fetchSuccess() {
+	function fetchSuccess() {
 
     var jsonData = ds.toJSON();
-    // Save JSON
-    // XXX
-
     var dataPercentage = getSales(jsonData);
     var dataUnits      = getUnits(jsonData);
 
@@ -109,5 +92,7 @@ function fetchSuccess() {
         }]
     });
 
-    $("#loading").hide();
 }
+
+
+});

@@ -1,17 +1,9 @@
-<html>
+<html ng-app="pieChartPOC">
     <head>
 
-		<link href="main.css" rel="stylesheet" type="text/css" />
-
-
-        <script src="script/jquery-1.8.2.min.js"></script>
-        <script src="script/highcharts.js"></script>
-        <script src="script/exporting.js"></script>
-        <script src="script/gray.js"></script>
-        <script src="script/mfly-commands.js"></script>
-        <script src="script/myscript.js"></script>
-        <script src="script/miso.ds.deps.min.0.4.0.js"></script>
-        <!-- // <script src="http://192.168.1.76:8080/target/target-script-min.js"></script> -->
+        <meta charset="UTF-8">
+		<link href="common/css/main.css" rel="stylesheet" type="text/css" />
+        <title>Constellation Pie Chart POC</title>
 
     </head>
 
@@ -37,6 +29,26 @@
         </div>
 
         
-    </body>
 
+    <!-- scripts below -->
+    <!-- angular -->
+    <script src="script/jquery-1.8.2.min.js"></script>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="script/highcharts.js"></script>
+    <script src="script/exporting.js"></script>
+    <script src="script/gray.js"></script>
+    <script src="script/mfly-commands.js"></script>
+    <script src="script/myscript.js"></script>
+    <script src="script/miso.ds.deps.min.0.4.0.js"></script>
+    <!-- // <script src="http://192.168.1.76:8080/target/target-script-min.js"></script> -->
+
+    <!-- main script -->
+    <script src="app.js"></script>
+
+    <!-- Controllers -->
+    <script src="chart/chart.js"></script>
+    </body>
 </html>
