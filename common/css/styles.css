@@ -45,6 +45,16 @@
 
 
 =========================================================================*/
+#piechart {
+    display: inline-block;
+}
+
+.pagination > li > a {
+    border:none;
+    border-radius: 20px;
+}
+
+
 .active.ng-enter {
     -webkit-animation: slideInLeft .75s;
     -moz-animation: slideInLeft .75s;
