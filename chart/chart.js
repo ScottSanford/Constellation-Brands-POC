@@ -1,6 +1,13 @@
 angular.module('pieChartPOC')
 
-.controller('ChartCtrl', function($scope, Dataset){
+.controller('ChartCtrl', function($scope, Dataset, ngDialog){
+
+    ngDialog.openConfirm({
+        template: 'chart/dialog/dialog.html',
+        className: 'ngdialog-theme-default', 
+        controller: 'DialogCtrl', 
+        scope: $scope
+    });
 
     initDataset();
 
@@ -13,9 +20,6 @@ angular.module('pieChartPOC')
     $scope.isSet = function(tabId) {
         return $scope.tab === tabId;
     }
-
-    // Dialog.create('chart/dialog/dialog.html', 'ngdialog-theme-plain custom-width', 'DialogCtrl');
-
 
    function initDataset() {
 
@@ -38,7 +42,7 @@ angular.module('pieChartPOC')
         // Pie Chart
         Dataset.pieChart(jsonData);
     }
-    
+
 
     
 
