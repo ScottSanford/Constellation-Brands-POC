@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="table-view" ng-class="{activetext:isSet(1)}" ng-show="isSet(1)">This is the table View.</div>
+
+	<div class="sales-view text-center" ng-class="{activetext:isSet(2)}" ng-show="isSet(2)">
+		<div id="pieChart"></div>
+	</div>
+
+	<div class="unit-view" ng-class="{activetext:isSet(3)}" ng-show="isSet(3)">Unit Pie Chart goes here</div>
+
+</div>
+
+<!-- Buttons -->
+<div class="text-center margin-top-50">
+	<div class="btn-group view-buttons" role="group" aria-label="...">
+	  <button type="button" class="btn btn-primary btn-lg raised" ng-class="{active:isSet(1)}" ng-click="setTab(1)">Table</button>
+	  <button type="button" class="btn btn-primary btn-lg raised"ng-class="{active:isSet(2)}" ng-click="setTab(2)">Sales</button>
+	  <button type="button" class="btn btn-primary btn-lg raised"ng-class="{active:isSet(3)}" ng-click="setTab(3)">Units</button>
+	</div>
+</div>
+<!-- <div class="button-container">
+    <a class="edit" href="https://docs.google.com/spreadsheets/d/1uCfi_rEzrFF5ZUrTU6qmgyRWPp4b-kzXLSw6wf5xp0A/edit?usp=sharing&gid=549751855">View</a>
+    <div class="exit">Exit</div>
+</div> -->

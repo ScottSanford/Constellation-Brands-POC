@@ -1,6 +1,7 @@
 angular.module("pieChartPOC", [
         'ngRoute', 
-        'ngAnimate'
+        'ngAnimate', 
+        'ngDialog'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 

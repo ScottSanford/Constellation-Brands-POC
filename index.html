@@ -2,51 +2,48 @@
     <head>
 
         <meta charset="UTF-8">
-		<link href="common/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="common/css/styles.css" rel="stylesheet" type="text/css"/>
+		<link href="lib/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css"/>
         <title>Constellation Pie Chart POC</title>
 
     </head>
 
     <body>
         
-        <!--TopBanner-->
-
-
-        <!-- pie chart -->
-        <div id="container"></div>
-
-        <!-- loading icon -->
-        <div id="loading"></div>
-
-        <!-- Buttons -->
-        <div class="banner-container">
-            <img class="banner" src="images/logo.png">
+    <div class="container">
+        <div class="row">
+            <img class="logo" src="images/logo.png">
         </div>
+        <div ng-view></div>
+    </div>   
 
-        <div class="button-container">
-            <a class="edit" href="https://docs.google.com/spreadsheets/d/1uCfi_rEzrFF5ZUrTU6qmgyRWPp4b-kzXLSw6wf5xp0A/edit?usp=sharing&gid=549751855">View</a>
-            <div class="exit">Exit</div>
-        </div>
-
-        
 
     <!-- scripts below -->
     <!-- angular -->
-    <script src="script/jquery-1.8.2.min.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+
+    <!-- Hamburger Menu -->
+    <script src="lib/standardized-menu/js/jquery.mmenu.min.js"></script>
+    <script src="lib/standardized-menu/js/ext.js"></script>
+    <script src="lib/standardized-menu/js/fastclick.js"></script>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
-    <script src="script/highcharts.js"></script>
-    <script src="script/exporting.js"></script>
-    <script src="script/gray.js"></script>
-    <script src="script/mfly-commands.js"></script>
-    <script src="script/myscript.js"></script>
-    <script src="script/miso.ds.deps.min.0.4.0.js"></script>
+    <script src="lib/ng-dialog/js/ngDialog.js"></script>
+    <script src="chart/highcharts/highcharts.js"></script>
+    <script src="chart/highcharts/exporting.js"></script>
+    <script src="chart/highcharts/gray.js"></script>
+    <script src="lib/mfly-commands/src/mflyCommands.js"></script>
+    <!-- // <script src="script/myscript.js"></script> -->
+    <script src="chart/miso/miso.ds.deps.min.0.4.0.js"></script>
     <!-- // <script src="http://192.168.1.76:8080/target/target-script-min.js"></script> -->
 
     <!-- main script -->
     <script src="app.js"></script>
+
+    <script src="chart/dialog/dialog.js"></script>
 
     <!-- Controllers -->
     <script src="chart/chart.js"></script>

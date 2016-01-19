@@ -1,8 +1,28 @@
 angular.module('pieChartPOC')
 
-.controller('ChartCtrl', function($scope){
+.controller('ChartCtrl', function($scope, Dialog){
 
-	console.log('Contrller connected!');
+    $scope.pieOne = false;
+
+    $scope.toggle = function() {
+        if ($scope.pieOne) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.tab = 2;
+
+    $scope.setTab = function(tabId) {
+        $scope.tab = tabId;
+    }
+
+    $scope.isSet = function(tabId) {
+        return $scope.tab === tabId;
+    }
+
+    Dialog.create('chart/dialog/dialog.html', 'ngdialog-theme-plain custom-width', 'DialogCtrl');
 
 	initDataset();
 
@@ -43,54 +63,63 @@ angular.module('pieChartPOC')
 	    return dataArr;
 	}
 
-	function fetchSuccess() {
+    function fetchSuccess() {
 
-    var jsonData = ds.toJSON();
-    var dataPercentage = getSales(jsonData);
-    var dataUnits      = getUnits(jsonData);
+        var jsonData = ds.toJSON();
 
-    chart = new Highcharts.Chart({
-        chart: {
-            renderTo: 'container',
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false, 
-            type: 'pie'
-        },
-        credits: {
-            enabled: false
-        },
-        exporting: {
-            enabled: false
-        },
-        title: {
-            text: "Wine Sales (52 Weeks - CLUB)"
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.point.name + '</b>:' + (this.percentage).toFixed(2) + '%';
+        var dataPercentage = getSales(jsonData);
+        var dataUnits      = getUnits(jsonData);
+        
+        function toggleChart() {
+            if ($scope.pieOne) {
+                return dataPercentage;
+            } else {
+                return dataUnits; 
             }
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    color: '#000000',
-                    connectorColor: '#F4C74E',
-                    formatter: function () {
-                        return '<b>' + this.point.name + '</b>: ' + (this.percentage).toFixed(2) + '%';
+        }
+
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'pieChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false, 
+                type: 'pie'
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            title: {
+                text: "Wine Sales (52 Weeks - CLUB)"
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.point.name + '</b>:' + (this.percentage).toFixed(2) + '%';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#F4C74E',
+                        formatter: function () {
+                            return '<b>' + this.point.name + '</b>: ' + (this.percentage).toFixed(2) + '%';
+                        }
                     }
                 }
-            }
-        },
-        series: [{
-            name: "Suppliers", 
-            colorByPoint: true, 
-            data: dataPercentage
-        }]
-    });
+            },
+            series: [{
+                name: "Suppliers", 
+                colorByPoint: true, 
+                data: toggleChart()
+            }]
+        });
 
 }
 
