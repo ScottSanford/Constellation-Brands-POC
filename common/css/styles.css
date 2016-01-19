@@ -22,15 +22,22 @@
 	margin-top:100px;
 }
 
+.font-size-20 {
+    font-size: 20px;
+}
+.font-weight-bold {
+    font-weight: bold;
+}
 
 
 
 .logo	 { 
 	width:300px; 
 	height:auto;
-	float:right;
+    position: absolute;
+    left:10px;
+    bottom:10px;
 }
-
 /*=========================================================================
 
 
@@ -38,6 +45,12 @@
 
 
 =========================================================================*/
+.active.ng-enter {
+    -webkit-animation: slideInLeft .75s;
+    -moz-animation: slideInLeft .75s;
+    -o-animation: slideInLeft .75s;
+    animation: slideInLeft .75s;
+}
 
 .view-buttons {
 	color:#ff0000;

@@ -1,18 +1,8 @@
 angular.module('pieChartPOC')
 
-.controller('ChartCtrl', function($scope, Dialog){
+.controller('ChartCtrl', function($scope){
 
-    $scope.pieOne = false;
-
-    $scope.toggle = function() {
-        if ($scope.pieOne) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    $scope.tab = 2;
+    $scope.tab = 1;
 
     $scope.setTab = function(tabId) {
         $scope.tab = tabId;
@@ -22,7 +12,7 @@ angular.module('pieChartPOC')
         return $scope.tab === tabId;
     }
 
-    Dialog.create('chart/dialog/dialog.html', 'ngdialog-theme-plain custom-width', 'DialogCtrl');
+    // Dialog.create('chart/dialog/dialog.html', 'ngdialog-theme-plain custom-width', 'DialogCtrl');
 
 	initDataset();
 
@@ -44,7 +34,7 @@ angular.module('pieChartPOC')
 	    for (var i = 0; i < row.length; i++) {
 	        var obj = {
 	            name: row[i].Supplier, 
-	            y: row[i].PerShare
+	            y: row[i].$Share
 	        }
 	        dataArr.push(obj);
 	    }
@@ -66,6 +56,8 @@ angular.module('pieChartPOC')
     function fetchSuccess() {
 
         var jsonData = ds.toJSON();
+
+        $scope.tableData  = jsonData;
 
         var dataPercentage = getSales(jsonData);
         var dataUnits      = getUnits(jsonData);

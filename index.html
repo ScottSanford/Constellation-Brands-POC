@@ -3,6 +3,11 @@
 
         <meta charset="UTF-8">
         <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="lib/mui/dist/css/mui.css" rel="stylesheet" type="text/css" />
+        <link href="lib/animate.css" rel="stylesheet" type="text/css" />
+        <link href="lib/standardized-menu/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="lib/standardized-menu/css/jquery.mmenu.css" rel="stylesheet" type="text/css" />
+        <link href="lib/standardized-menu/css/mfly-menu.css" rel="stylesheet" type="text/css" />
         <link href="common/css/styles.css" rel="stylesheet" type="text/css"/>
 		<link href="lib/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css"/>
         <title>Constellation Pie Chart POC</title>
@@ -10,42 +15,74 @@
     </head>
 
     <body>
-        
-    <div class="container">
-        <div class="row">
-            <img class="logo" src="images/logo.png">
+    
+        <div class="header">
+            <a href="#menu"><span class="fa fa-bars fa-2x" id="hamburger-menu"></span></a>
         </div>
-        <div ng-view></div>
-    </div>   
+
+        <nav id="menu">
+             <ul>
+                <li class="view-data">
+                  <i class="fa fa-database"></i> <span class="menu-item">View Data</span>
+                </li>                
+                <li class="annotations">
+                  <i class="fa fa-pencil-square-o"></i> <span class="menu-item">Annotations</span>
+                </li>
+                <li class="second-screen">
+                  <i class="fa fa-slideshare"></i> <span class="menu-item">Second Screen</span>
+                </li>
+                <!-- <li class="collections">
+                  <i class="fa fa-plus"></i> <span class="menu-item">Collections</span>
+                </li>
+                <li class="previous">
+                  <i class="fa fa-arrow-left"></i> <span class="menu-item">Previous</span>
+                </li>
+                <li class="next">
+                  <i class="fa fa-arrow-right"></i> <span class="menu-item">Next</span>
+                </li> -->
+                <li class="close-btn">
+                  <i class="fa fa-close"></i> <span class="menu-item">Close</span>
+                </li>
+             </ul>
+        </nav>
+        
+        <div class="container">
+            <div class="row">
+                <img class="logo" src="images/logo.png">
+            </div>
+            <div ng-view></div>
+        </div>   
 
 
-    <!-- scripts below -->
-    <!-- angular -->
-    <script src="lib/jquery/dist/jquery.js"></script>
+        <!-- scripts below -->
+        <!-- angular -->
+        <script src="lib/jquery/dist/jquery.js"></script>
 
-    <!-- Hamburger Menu -->
-    <script src="lib/standardized-menu/js/jquery.mmenu.min.js"></script>
-    <script src="lib/standardized-menu/js/ext.js"></script>
-    <script src="lib/standardized-menu/js/fastclick.js"></script>
+        <!-- Hamburger Menu -->
+        <script src="lib/standardized-menu/js/jquery.mmenu.min.js"></script>
+        <script src="lib/standardized-menu/js/hamburger-menu.js"></script>
+        <script src="lib/standardized-menu/js/fastclick.js"></script>
 
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/angular-animate/angular-animate.js"></script>
-    <script src="lib/ng-dialog/js/ngDialog.js"></script>
-    <script src="chart/highcharts/highcharts.js"></script>
-    <script src="chart/highcharts/exporting.js"></script>
-    <script src="chart/highcharts/gray.js"></script>
-    <script src="lib/mfly-commands/src/mflyCommands.js"></script>
-    <!-- // <script src="script/myscript.js"></script> -->
-    <script src="chart/miso/miso.ds.deps.min.0.4.0.js"></script>
-    <!-- // <script src="http://192.168.1.76:8080/target/target-script-min.js"></script> -->
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular-route/angular-route.js"></script>
+        <script src="lib/angular-animate/angular-animate.js"></script>
+        <script src="lib/angularUtils-pagination/dirPagination.js"></script>
+        <script src="lib/ng-dialog/js/ngDialog.js"></script>
+        <script src="lib/mfly-commands/src/mflyCommands.js"></script>
+        <script src="chart/highcharts/highcharts.js"></script>
+        <script src="chart/highcharts/exporting.js"></script>
+        <script src="chart/highcharts/gray.js"></script>
+        <script src="chart/miso/miso.ds.deps.min.0.4.0.js"></script>
+        <!-- // <script src="http://192.168.1.76:8080/target/target-script-min.js"></script> -->
 
-    <!-- main script -->
-    <script src="app.js"></script>
+        <!-- main script -->
+        <script src="app.js"></script>
 
-    <script src="chart/dialog/dialog.js"></script>
+        <!-- Services -->
+        <script src="chart/dialog/dialog.js"></script>
 
-    <!-- Controllers -->
-    <script src="chart/chart.js"></script>
+        <!-- Controllers -->
+        <script src="chart/chart.js"></script>
+
     </body>
 </html>

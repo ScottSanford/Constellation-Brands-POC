@@ -1,11 +1,44 @@
+<div class="text-right font-size-20 font-weight-bold">Total: ${{total}}</div>
 <div class="row">
-	<div class="table-view" ng-class="{activetext:isSet(1)}" ng-show="isSet(1)">This is the table View.</div>
 
-	<div class="sales-view text-center" ng-class="{activetext:isSet(2)}" ng-show="isSet(2)">
+	<div class="table-view" ng-class="{active:isSet(1)}" ng-show="isSet(1)">
+
+		<table class="mui-table">
+			<thead>
+		        <tr>
+		            <th>Supplier</th>
+		            <th>$ Share</th>
+		            <th>$ Sales % Chg</th>
+		            <th>Unit Share</th>
+		            <th>Units</th>
+		            <th>Units % Chg</th>
+		        </tr>
+		    </thead>
+		  	<tr dir-paginate="table in tableData | itemsPerPage:5">
+		    	<td>{{ table.Supplier }}</td>
+		    	<td>{{ table.$Share }}</td>		    	
+		    	<td>{{ table.$SalesChg }}</td>
+		    	<td>{{ table.UnitShare }}</td>
+		    	<td>{{ table.Units }}</td>
+		    	<td>{{ table.UnitsChg }}</td>
+		  	</tr>
+		</table>
+		<div class="text-center">
+			<dir-pagination-controls
+				class="text-center"
+	        	max-size="5"
+	        	direction-links="false"
+	        	boundary-links="true" >
+	    	</dir-pagination-controls>
+		</div>
+
+	</div>
+
+	<div class="sales-view text-center" ng-class="{active:isSet(2)}" ng-show="isSet(2)">
 		<div id="pieChart"></div>
 	</div>
 
-	<div class="unit-view" ng-class="{activetext:isSet(3)}" ng-show="isSet(3)">Unit Pie Chart goes here</div>
+	<div class="unit-view" ng-class="{active:isSet(3)}" ng-show="isSet(3)">Unit Pie Chart goes here</div>
 
 </div>
 
