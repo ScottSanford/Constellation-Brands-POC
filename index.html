@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="lib/mui/dist/css/mui.css" rel="stylesheet" type="text/css" />
-        <link href="lib/animate.css" rel="stylesheet" type="text/css" />
+        <link href="lib/animate.css/animate.css" rel="stylesheet" type="text/css" />
         <link href="lib/standardized-menu/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="lib/standardized-menu/css/jquery.mmenu.css" rel="stylesheet" type="text/css" />
         <link href="lib/standardized-menu/css/mfly-menu.css" rel="stylesheet" type="text/css" />
@@ -33,15 +33,6 @@
                 <li class="second-screen">
                   <i class="fa fa-slideshare"></i> <span class="menu-item">Second Screen</span>
                 </li>
-                <!-- <li class="collections">
-                  <i class="fa fa-plus"></i> <span class="menu-item">Collections</span>
-                </li>
-                <li class="previous">
-                  <i class="fa fa-arrow-left"></i> <span class="menu-item">Previous</span>
-                </li>
-                <li class="next">
-                  <i class="fa fa-arrow-right"></i> <span class="menu-item">Next</span>
-                </li> -->
                 <li class="close-btn">
                   <i class="fa fa-close"></i> <span class="menu-item">Close</span>
                 </li>
@@ -49,10 +40,22 @@
         </nav>
         
         <div class="container">
+
             <div class="row">
                 <img class="logo" src="images/logo.png">
             </div>
-            <div ng-view></div>
+
+            <div class="row">
+
+                <ul class="nav nav-tabs margin-top-50">
+                  <li role="presentation" class="active"><a href="#/table">Table</a></li>
+                  <li role="presentation"><a href="#/sales">Sales</a></li>
+                  <li role="presentation"><a href="#/units">Units</a></li>
+                </ul>
+                <div ng-view></div>
+
+            </div>
+
         </div>   
 
 
@@ -71,10 +74,10 @@
         <script src="lib/angularUtils-pagination/dirPagination.js"></script>
         <script src="lib/ng-dialog/js/ngDialog.js"></script>
         <script src="lib/mfly-commands/src/mflyCommands.js"></script>
-        <script src="chart/highcharts/highcharts.js"></script>
-        <script src="chart/highcharts/exporting.js"></script>
-        <script src="chart/highcharts/gray.js"></script>
-        <script src="chart/miso/miso.ds.deps.min.0.4.0.js"></script>
+        <script src="common/highcharts/highcharts.js"></script>
+        <script src="common/highcharts/exporting.js"></script>
+        <script src="common/highcharts/gray.js"></script>
+        <script src="common/miso/miso.ds.deps.min.0.4.0.js"></script>
         <!-- // <script src="http://192.168.1.76:8080/target/target-script-min.js"></script> -->
 
         <!-- main script -->
@@ -84,8 +87,10 @@
         <script src="common/data/utildata.js"></script>
 
         <!-- Controllers -->
-        <script src="chart/dialog/dialog.js"></script>
-        <script src="chart/chart.js"></script>
+        <script src="table/dialog/dialog.js"></script>
+        <script src="table/table.js"></script>
+        <script src="sales/sales.js"></script>
+        <script src="units/units.js"></script>
 
     </body>
 </html>

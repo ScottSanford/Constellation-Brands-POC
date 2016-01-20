@@ -50,8 +50,8 @@ tr:nth-child(even) {
 	width:300px; 
 	height:auto;
     position: absolute;
-    left:10px;
-    bottom:10px;
+    right:0px;
+    top:0px;
 }
 /*=========================================================================
 
@@ -60,13 +60,35 @@ tr:nth-child(even) {
 
 
 =========================================================================*/
-#piechartSales, #piechartUnits {
+.nav-tabs > li.active > a {
+    background-color:#f0a049;
+    color:#fff;
+}
+
+.nav-tabs > li > a {
+    border:none;
+    border-radius: 4px 4px 0 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    color:#000;
+}
+
+.nav-tabs > li > a:hover {
+    background: #f0a049;
+}
+
+#pieChartSales, #pieChartUnits {
     display: inline-block;
 }
 
 .pagination > li > a {
     border:none;
     border-radius: 20px;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover {
+    background-color: #f0a049;
+    border-color: f0a049#;
 }
 
 
@@ -76,54 +98,6 @@ tr:nth-child(even) {
     -o-animation: slideInLeft .75s;
     animation: slideInLeft .75s;
 }
-
-.view-buttons {
-	color:#ff0000;
-}
-
-.btn-primary.raised {
-    box-shadow: 0 3px 0 0 #007299;
-}
-.btn-primary.raised:active, .btn-primary.raised.active {
-    background: #33a6cc;
-    box-shadow: none;
-    margin-bottom: -3px;
-    margin-top: 3px;
-}
-
-/***********************
-  CUSTON BTN VALUES
-************************/
-
-.btn {
-    padding: 14px 24px;
-    border: 0 none;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-.btn:focus, .btn:active:focus, .btn.active:focus {
-    outline: 0 none;
-}
-
-.btn-primary {
-    background: #0099cc;
-    color: #ffffff;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: #33a6cc;
-}
-.btn-primary:active, .btn-primary.active {
-    background: #007299;
-    box-shadow: none;
-}
-
-.button-container {
-	position: absolute;
-	bottom: -25px;
-	right:-25px;
-}
-
 /*=========================================================================
 
 

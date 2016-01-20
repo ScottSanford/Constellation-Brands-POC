@@ -2,66 +2,55 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q) {
 
     var UtilData = {};
     
-    UtilData.getSales = function(row) {
+    UtilData.getSalesData = function(jsonData) {
+        var deferred = $q.defer();
+
+        var dataArr = [];
+        for (var i = 0; i < jsonData.length; i++) {
+            var obj = {
+                name: jsonData[i].Supplier, 
+                y: jsonData[i].$Share
+            }
+            dataArr.push(obj);
+        }
+
+        var obj = {
+            util: dataArr,
+            titleText: '$ Sales'
+        }
+
+        deferred.resolve(obj);
+
+        return deferred.promise;
+
+    };
+
+    UtilData.getUnitsData = function(jsonData) {
+        var deferred = $q.defer();
         
         var dataArr = [];
-        for (var i = 0; i < row.length; i++) {
+        for (var i = 0; i < jsonData.length; i++) {
             var obj = {
-                name: row[i].Supplier, 
-                y: row[i].$Share
+                name: jsonData[i].Supplier, 
+                y: jsonData[i].UnitShare
             }
             dataArr.push(obj);
         }
-        return dataArr;
 
-    };
-
-    UtilData.getUnits = function(row) {
-        var dataArr = [];
-        for (var i = 0; i < row.length; i++) {
-            var obj = {
-                name: row[i].Supplier, 
-                y: row[i].UnitShare
-            }
-            dataArr.push(obj);
+        var obj = {
+            util: dataArr,
+            titleText: 'Units'
         }
-        return dataArr;
-    }
 
-    UtilData.getSalesOrUnits = function(tabId, jsonData) {
-      
-       var deferred = $q.defer();
-      
-       if (tabId == 2) {
+        deferred.resolve(obj);
 
-            var obj = {
-                util: UtilData.getSales(jsonData), 
-                html: 'pieChartSales', 
-                titleText: '$ Sales'
-            }
-
-            deferred.resolve(obj);
-
-       } else if (tabId == 3) {
-
-            var obj = {
-                util: UtilData.getUnits(jsonData), 
-                html: 'pieChartUnits', 
-                titleText: 'Units'
-            }
-
-            deferred.resolve(obj);
-
-       } 
-
-       return deferred.promise; 
-
+        return deferred.promise;
     };
 
-    UtilData.pieChart = function(html, titleText, dataPoints) {
+    UtilData.pieChart = function(titleText, dataPoints) {
         chart = new Highcharts.Chart({
             chart: {
-                renderTo: html, // make dynamic 
+                renderTo: 'pieChart', 
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false, 
@@ -74,7 +63,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q) {
                 enabled: false
             },
             title: {
-                text: titleText // make dynamic
+                text: titleText
             },
             tooltip: {
                 formatter: function () {
@@ -98,7 +87,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q) {
             series: [{
                 name: "Suppliers", 
                 colorByPoint: true, 
-                data: dataPoints // make dynamic
+                data: dataPoints
             }]
         });
     };
