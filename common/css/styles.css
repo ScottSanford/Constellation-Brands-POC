@@ -29,6 +29,14 @@
     font-weight: bold;
 }
 
+.color-red {
+    color:#ff0000;
+}
+
+tr:nth-child(even) {
+    color:#f0a049;
+}
+
 
 .logo	 { 
 	width:300px; 

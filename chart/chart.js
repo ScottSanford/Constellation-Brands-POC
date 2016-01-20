@@ -2,12 +2,16 @@ angular.module('pieChartPOC')
 
 .controller('ChartCtrl', function($scope, Dataset, ngDialog){
 
-    ngDialog.openConfirm({
-        template: 'chart/dialog/dialog.html',
-        className: 'ngdialog-theme-default', 
-        controller: 'DialogCtrl', 
-        scope: $scope
-    });
+    // ngDialog.openConfirm({
+    //     template: 'chart/dialog/dialog.html',
+    //     className: 'ngdialog-theme-default', 
+    //     controller: 'DialogCtrl', 
+    //     scope: $scope
+    // });
+
+    $scope.sortType    = 'Supplier';
+    $scope.sortReverse = false;
+    $scope.searchData  = '';
 
     initDataset();
 

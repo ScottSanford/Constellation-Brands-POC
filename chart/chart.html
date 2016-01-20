@@ -3,20 +3,59 @@
 
 	<div class="table-view" ng-class="{active:isSet(1)}" ng-show="isSet(1)">
 
+	    <form class="margin-top-25">
+	      <div class="form-group">
+	        <div class="input-group">
+	          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+	          <input type="text" class="form-control" placeholder="Search for supplier..." ng-model="searchData">
+	        </div>      
+	      </div>
+	    </form>
+
 		<table class="mui-table">
 			<thead>
 		        <tr>
-		            <th>Supplier</th>
-		            <th>$ Share</th>
-		            <th>$ Sales % Chg</th>
-		            <th>Unit Share</th>
-		            <th>Units</th>
-		            <th>Units % Chg</th>
+		            <th ng-click="sortType = 'Supplier'; sortReverse = !sortReverse">
+	            		Supplier
+	            		<span ng-show="sortType == 'Supplier' && !sortReverse" class="fa fa-caret-down color-red"></span>
+        				<span ng-show="sortType == 'Supplier' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>
+		            <th ng-click="sortType = '$Share'; sortReverse = !sortReverse">
+		            	$ Share
+		            	<span ng-show="sortType == '$Share' && !sortReverse" class="fa fa-caret-down color-red"></span>
+            			<span ng-show="sortType == '$Share' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>
+		            <th ng-click="sortType = '$Sales'; sortReverse = !sortReverse">
+		            	$ Sales
+		            	<span ng-show="sortType == '$Sales' && !sortReverse" class="fa fa-caret-down color-red"></span>
+            			<span ng-show="sortType == '$Sales' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>
+		            <th ng-click="sortType = '$SalesChg'; sortReverse = !sortReverse">
+		            	% Sales Chg
+		            	<span ng-show="sortType == '$SalesChg' && !sortReverse" class="fa fa-caret-down color-red"></span>
+            			<span ng-show="sortType == '$SalesChg' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>
+		            <th ng-click="sortType = 'UnitShare'; sortReverse = !sortReverse">	            	
+		            	Units Share
+		            	<span ng-show="sortType == 'UnitShare' && !sortReverse" class="fa fa-caret-down color-red"></span>
+            			<span ng-show="sortType == 'UnitShare' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>
+		            <th ng-click="sortType = 'Units'; sortReverse = !sortReverse">
+		              	Units
+		            	<span ng-show="sortType == 'Units' && !sortReverse" class="fa fa-caret-down color-red"></span>
+            			<span ng-show="sortType == 'Units' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>		            
+		            <th ng-click="sortType = 'UnitsChg'; sortReverse = !sortReverse">
+		            	% Units Chg
+		            	<span ng-show="sortType == 'UnitsChg' && !sortReverse" class="fa fa-caret-down color-red"></span>
+            			<span ng-show="sortType == 'UnitsChg' && sortReverse" class="fa fa-caret-up color-red"></span>
+		            </th>
 		        </tr>
 		    </thead>
-		  	<tr dir-paginate="table in tableData | filter:$Share | itemsPerPage:5">
+		  	<tr dir-paginate="table in tableData | orderBy:sortType:sortReverse | filter:searchData | itemsPerPage:5">
 		    	<td>{{ table.Supplier }}</td>
 		    	<td>{{ table.$Share }}</td>		    	
+		    	<td>{{ table.$Sales }}</td>		    	
 		    	<td>{{ table.$SalesChg }}</td>
 		    	<td>{{ table.UnitShare }}</td>
 		    	<td>{{ table.Units }}</td>
