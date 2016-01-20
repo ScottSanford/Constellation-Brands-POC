@@ -1,8 +1,8 @@
-angular.module('pieChartPOC').factory('Dataset', function($http, $q) {
+angular.module('pieChartPOC').factory('UtilData', function($http, $q) {
 
-    var Dataset = {};
+    var UtilData = {};
     
-    Dataset.getSales = function(row) {
+    UtilData.getSales = function(row) {
         
         var dataArr = [];
         for (var i = 0; i < row.length; i++) {
@@ -16,7 +16,7 @@ angular.module('pieChartPOC').factory('Dataset', function($http, $q) {
 
     };
 
-    Dataset.getUnits = function(row) {
+    UtilData.getUnits = function(row) {
         var dataArr = [];
         for (var i = 0; i < row.length; i++) {
             var obj = {
@@ -28,10 +28,40 @@ angular.module('pieChartPOC').factory('Dataset', function($http, $q) {
         return dataArr;
     }
 
-    Dataset.pieChart = function(data) {
+    UtilData.getSalesOrUnits = function(tabId, jsonData) {
+      
+       var deferred = $q.defer();
+      
+       if (tabId == 2) {
+
+            var obj = {
+                util: UtilData.getSales(jsonData), 
+                html: 'pieChartSales', 
+                titleText: '$ Sales'
+            }
+
+            deferred.resolve(obj);
+
+       } else if (tabId == 3) {
+
+            var obj = {
+                util: UtilData.getUnits(jsonData), 
+                html: 'pieChartUnits', 
+                titleText: 'Units'
+            }
+
+            deferred.resolve(obj);
+
+       } 
+
+       return deferred.promise; 
+
+    };
+
+    UtilData.pieChart = function(html, titleText, dataPoints) {
         chart = new Highcharts.Chart({
             chart: {
-                renderTo: 'pieChart',
+                renderTo: html, // make dynamic 
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false, 
@@ -44,7 +74,7 @@ angular.module('pieChartPOC').factory('Dataset', function($http, $q) {
                 enabled: false
             },
             title: {
-                text: "Wine Sales (52 Weeks - CLUB)"
+                text: titleText // make dynamic
             },
             tooltip: {
                 formatter: function () {
@@ -68,12 +98,12 @@ angular.module('pieChartPOC').factory('Dataset', function($http, $q) {
             series: [{
                 name: "Suppliers", 
                 colorByPoint: true, 
-                data: Dataset.getSales(data)
+                data: dataPoints // make dynamic
             }]
         });
     };
 
 
-    return Dataset;
+    return UtilData;
  
 });

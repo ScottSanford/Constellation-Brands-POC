@@ -1,6 +1,6 @@
 angular.module('pieChartPOC')
 
-.controller('ChartCtrl', function($scope, Dataset, ngDialog){
+.controller('ChartCtrl', function($scope, UtilData, ngDialog){
 
     // ngDialog.openConfirm({
     //     template: 'chart/dialog/dialog.html',
@@ -19,6 +19,7 @@ angular.module('pieChartPOC')
 
     $scope.setTab = function(tabId) {
         $scope.tab = tabId;
+        fetchSuccess(tabId);
     }
 
     $scope.isSet = function(tabId) {
@@ -34,17 +35,21 @@ angular.module('pieChartPOC')
             worksheet: "1"
         });
 
-        ds.fetch().done(fetchSuccess);
+        ds.fetch().done(fetchSuccess(1));
 
     };
 
-    function fetchSuccess() {
+    function fetchSuccess(tabId) {
+
         var jsonData = ds.toJSON();
 
-        // table
+        // attach to scope for table view
         $scope.tableData = jsonData;
         // Pie Chart
-        Dataset.pieChart(jsonData);
+        UtilData.getSalesOrUnits(tabId,jsonData).then(function(data){
+            UtilData.pieChart(data.html, data.titleText, data.util);
+        });
     }
+
 
 });

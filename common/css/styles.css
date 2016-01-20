@@ -60,7 +60,7 @@ tr:nth-child(even) {
 
 
 =========================================================================*/
-#piechart {
+#piechartSales, #piechartUnits {
     display: inline-block;
 }
 
