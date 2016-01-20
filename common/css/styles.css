@@ -29,8 +29,16 @@
     font-weight: bold;
 }
 
-.color-red {
+.colorRed {
     color:#ff0000;
+}
+
+.color-gold {
+    color:#f0a049;
+}
+
+.background-gold {
+    background: #f0a049;
 }
 
 tr:nth-child(even) {

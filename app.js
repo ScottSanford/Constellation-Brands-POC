@@ -2,7 +2,7 @@ angular.module("pieChartPOC", [
         'ngRoute', 
         'ngAnimate', 
         'ngDialog', 
-        'angularUtils.directives.dirPagination'       
+        'angularUtils.directives.dirPagination'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
@@ -15,5 +15,4 @@ angular.module("pieChartPOC", [
                 .otherwise({
                     redirectTo: '/'
                 });
-          })
-        
+        });

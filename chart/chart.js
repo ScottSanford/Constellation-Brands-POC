@@ -47,8 +47,4 @@ angular.module('pieChartPOC')
         Dataset.pieChart(jsonData);
     }
 
-
-    
-
-
 });
