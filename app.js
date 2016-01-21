@@ -2,7 +2,8 @@ angular.module("pieChartPOC", [
         'ngRoute', 
         'ngAnimate', 
         'ngDialog', 
-        'angularUtils.directives.dirPagination'
+        'angularUtils.directives.dirPagination', 
+        'LocalStorageModule'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 

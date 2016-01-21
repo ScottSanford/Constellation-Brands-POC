@@ -2,7 +2,7 @@ angular.module('pieChartPOC')
 
 .controller('SalesCtrl', function($scope, UtilData, $location){
 
-    initDataset();          
+    initDataset();      
 
    	function initDataset() {
 
@@ -10,7 +10,7 @@ angular.module('pieChartPOC')
             importer: Miso.Dataset.Importers.GoogleSpreadsheet,
             parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
             key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
-            worksheet: "1"
+            worksheet: UtilData.getGoogleWorkSheet()
         });
 
         ds.fetch().done(fetchSuccess);

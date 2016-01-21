@@ -1,54 +1,71 @@
 angular.module('pieChartPOC')
 
 
-.controller('DialogCtrl',function ($scope, ngDialog) {
+.controller('DialogCtrl',function ($scope, ngDialog, localStorageService) {
 		
 	$scope.suppliers = [
 		{
 		 name: 'Club',
-		 id: 1,
-		 value: 'club'
+		 id: 1
 		}, 
 		{
 		 name: 'Multi-Outlet', 
-		 id: 2,
-		 value: 'multi'
+		 id: 2
 		} 
 	];
-
-	$scope.selectedS = {s: null};
 
 	$scope.weeks = [
 		{
 		 name: '4 Weeks', 
-		 id: 1,
 		 value: 4
 		}, 
 		{
 		 name: '12 Weeks', 
-		 id: 2,
 		 value: 12
 		}, 
 		{
 		 name: '52 Weeks', 
-		 id: 3,
 		 value: 52
 		}
 	];
 
 
-	$scope.openSecondDialog = function(selected) {
-		console.log("JSON:: ", json);
+	$scope.ngDialogData = {
+		name: null, 
+		value: null
+	};
 
-		// ngDialog.openConfirm({
-	 //        template: 'table/dialog/seconddialog.html',
-	 //        className: 'ngdialog-theme-default', 
-	 //        controller: 'DialogCtrl', 
-	 //        scope: $scope
-  //   	});
+
+	$scope.openSecondDialog = function() {
+		
+		localStorageService.set('name', $scope.ngDialogData.name);
+
+		ngDialog.openConfirm({
+	        template: 'table/dialog/seconddialog.html',
+	        className: 'ngdialog-theme-default', 
+	        controller: 'DialogCtrl', 
+	        scope: $scope
+    	});
+
+	};
+
+	$scope.getWeekValue = function() {
+	
+		localStorageService.set('value', $scope.ngDialogData.value);
+
+		var name = localStorageService.get('name');
+		var value = localStorageService.get('value');
+
+		ngDialog.close();		
 	};
 
 	$scope.closeDialog = function() {
-		ngDialog.close();
+		ngDialog.openConfirm({
+	        template: 'table/dialog/dialog.html',
+	        className: 'ngdialog-theme-default', 
+	        controller: 'DialogCtrl', 
+	        scope: $scope
+    	});
 	};
+
 });

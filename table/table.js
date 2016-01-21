@@ -1,32 +1,44 @@
 angular.module('pieChartPOC')
 
-.controller('TableCtrl', function($scope, UtilData, ngDialog){
+.controller('TableCtrl', function($scope, UtilData, ngDialog, localStorageService){
 
-    ngDialog.openConfirm({
-        template: 'table/dialog/dialog.html',
-        className: 'ngdialog-theme-default', 
-        controller: 'DialogCtrl', 
-        scope: $scope
-    });
+    var name = localStorageService.get('name');
+    var value = localStorageService.get('value');
+    var ds;
+
+    if (name == undefined & value == undefined) {
+        ngDialog.openConfirm({
+            template: 'table/dialog/dialog.html',
+            className: 'ngdialog-theme-default', 
+            controller: 'DialogCtrl', 
+            scope: $scope
+        });
+    } else {
+        initDataset();
+    }
 
     $scope.sortType    = 'Supplier';
     $scope.sortReverse = false;
-    $scope.searchData  = '';
+    $scope.searchData  = '';        
 
-    initDataset();           
+    function initDataset() {
 
-   function initDataset() {
+        UtilData.getGoogleWorkSheet().then(function(worksheet){
+            console.log(typeof worksheet);
+            var ds = new Miso.Dataset({
+                importer: Miso.Dataset.Importers.GoogleSpreadsheet,
+                parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
+                key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
+                worksheet: worksheet
+            });          
+            ds.fetch().done(function(){
+                var jsonData = ds.toJSON();
 
-        ds = new Miso.Dataset({
-            importer: Miso.Dataset.Importers.GoogleSpreadsheet,
-            parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
-            key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
-            worksheet: "1"
-        });
+                console.log(jsonData);
+                UtilData.saveDataToLocalStorage(jsonData);
 
-        ds.fetch().done(function(){
-            var jsonData = ds.toJSON();
-            $scope.tableData = jsonData;
+                $scope.tableData = jsonData;
+            });
         });
 
     };

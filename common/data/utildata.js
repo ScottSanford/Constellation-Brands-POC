@@ -1,4 +1,4 @@
-angular.module('pieChartPOC').factory('UtilData', function($http, $q) {
+angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStorageService) {
 
     var UtilData = {};
     
@@ -92,6 +92,41 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q) {
         });
     };
 
+    UtilData.getGoogleWorkSheet = function() {
+        var deferred = $q.defer();
+        var name = localStorageService.get('name');
+        var value = localStorageService.get('value');
+
+        if (name == "Club" && value == 4) {
+            var wksht = "1";
+            deferred.resolve(wksht);
+        } else if (name == "Club" && value == 12) {
+            var wksht = "2";
+            deferred.resolve(wksht);
+        } else if (name == "Club" && value == 52) {
+            var wksht = "3";
+            deferred.resolve(wksht);
+        } else if (name == "Multi-Outlet" && value == 4) {
+            var wksht = "4";
+            deferred.resolve(wksht);
+        } else if (name == "Multi-Outlet" && value == 12) {
+            var wksht = "5";
+            deferred.resolve(wksht);
+        } else if (name == "Multi-Outlet" && value == 52) {
+            var wksht = "6";
+            deferred.resolve(wksht);
+        }
+        
+        return deferred.promise;
+    };
+
+    UtilData.saveDataToLocalStorage = function(data) {
+        localStorageService.set('savedData', data);
+    };    
+
+    UtilData.getSavedData = function() {
+        localStorageService.get('savedData');
+    };
 
     return UtilData;
  

@@ -9,16 +9,16 @@
 
 			<div class="col-sm-6" ng-repeat="s in suppliers">
 				<input type="radio" class="radio" name="supplier" 
-					id="{{s.value}}" 
-					ng-model="selectedS.s"
-					value="{{s}}" 
+					id="{{s.id}}" 
+					ng-model="ngDialogData.name"
+					value="{{s.name}}" 
 					required>
-				<label for="{{s.value}}">{{s.name}}</label>
+				<label for="{{s.id}}">{{s.name}}</label>
 			</div>
-				{{ radioValue }}
-				<button type="submit" class="pull-right margin-top-25 dialog-btn" 
-					ng-click="openSecondDialog(selectedS.s)">Next</button>
 				
+			<button type="submit" class="pull-right margin-top-25 dialog-btn" 
+				ng-click="openSecondDialog(ngDialogData.name)">Next</button>
+			
 			
 		</form>
 

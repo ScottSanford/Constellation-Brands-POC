@@ -1,19 +1,26 @@
 <div class="dialog-container dialog-padding">
 		
 	<div class="dialog-title">
-		Which time frame for {{selectedType}}?
+		Which time frame for {{selOne.name}}?
 	</div>
 	<div class="row margin-top-15 text-center">
 
 		<form name="supplierForm">
 
 			<div class="col-sm-4" ng-repeat="week in weeks">
-				<input type="radio" class="radio" name="week" id="{{week.id}}" value="{{week.id}}" required>
-				<label for="{{week.id}}">{{week.name}}</label>
+				<input type="radio" class="radio" name="week" 
+					id="{{week.value}}" 
+					ng-model="ngDialogData.value"
+					value="{{week.value}}" 
+					required>
+				<label for="{{week.value}}">{{week.name}}</label>
 			</div>
 
-			<button type="submit" class="pull-right margin-top-25 dialog-btn" ng-click="closeDialog()">Cancel</button>
-			<button type="submit" class="pull-right margin-top-25 dialog-btn">Confirm</button>
+			<button type="submit" class="pull-right margin-top-25 dialog-btn" 
+				ng-click="getWeekValue(ngDialogData.value)">Confirm</button>
+
+			<button type="submit" class="pull-right margin-top-25 dialog-btn" 
+				ng-click="closeDialog()">Cancel</button>
 			
 		</form>
 
