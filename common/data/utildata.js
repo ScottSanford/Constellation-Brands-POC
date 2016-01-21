@@ -2,7 +2,39 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
 
     var UtilData = {};
 
-    UtilData.newData = function(worksheet) {
+    UtilData.getGoogleWorkSheetData = function(dialogBox) {
+        var deferred = $q.defer();
+        var name = localStorageService.get('name');
+        var value = localStorageService.get('value');
+
+        if (name !== undefined && value !== undefined) {
+            if (name == "Club" && value == 4) {
+                var wksht = "1";             
+                UtilData.asyncRequest(wksht);
+            } else if (name == "Club" && value == 12) {
+                var wksht = "2";
+                UtilData.asyncRequest(wksht);
+            } else if (name == "Club" && value == 52) {
+                var wksht = "3";
+                UtilData.asyncRequest(wksht);
+            } else if (name == "Multi-Outlet" && value == 4) {
+                var wksht = "4";
+                UtilData.asyncRequest(wksht);
+            } else if (name == "Multi-Outlet" && value == 12) {
+                var wksht = "5";
+                UtilData.asyncRequest(wksht);
+            } else if (name == "Multi-Outlet" && value == 52) {
+                var wksht = "6";
+                UtilData.asyncRequest(wksht);
+            }          
+        }  
+        else {
+            return dialogBox;
+        }
+     
+    };
+
+    UtilData.asyncRequest = function(worksheet) {
         var deferred = $q.defer();
 
         var ds = new Miso.Dataset({
@@ -21,11 +53,9 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             if (route == '/table') {
                 deferred.resolve(jsonData);
             } else if (route == '/sales') {
-                var gs = UtilData.getSalesData(jsonData);
-                deferred.resolve(gs);
+                UtilData.getSalesData(jsonData);
             } else if (route == '/units') {
-                var gu = UtilData.getUnitsData(jsonData);
-                deferred.resolve(gu);
+                UtilData.getUnitsData(jsonData);
             }
 
         });
@@ -50,9 +80,9 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             titleText: '$ Sales'
         }
 
-        deferred.resolve(obj);
+        var chart = UtilData.pieChart(obj.titleText, obj.util);
 
-        return deferred.promise;
+        return chart;
 
     };
 
@@ -73,9 +103,9 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             titleText: 'Units'
         }
 
-        deferred.resolve(obj);
+        var chart = UtilData.pieChart(obj.titleText, obj.util);
 
-        return deferred.promise;
+        return chart;
     };
 
     UtilData.pieChart = function(titleText, dataPoints) {
@@ -121,34 +151,6 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
                 data: dataPoints
             }]
         });
-    };
-
-    UtilData.getGoogleWorkSheet = function() {
-        var deferred = $q.defer();
-        var name = localStorageService.get('name');
-        var value = localStorageService.get('value');
-
-        if (name == "Club" && value == 4) {
-            var wksht = "1";
-            deferred.resolve(wksht);
-        } else if (name == "Club" && value == 12) {
-            var wksht = "2";
-            deferred.resolve(wksht);
-        } else if (name == "Club" && value == 52) {
-            var wksht = "3";
-            deferred.resolve(wksht);
-        } else if (name == "Multi-Outlet" && value == 4) {
-            var wksht = "4";
-            deferred.resolve(wksht);
-        } else if (name == "Multi-Outlet" && value == 12) {
-            var wksht = "5";
-            deferred.resolve(wksht);
-        } else if (name == "Multi-Outlet" && value == 52) {
-            var wksht = "6";
-            deferred.resolve(wksht);
-        }
-        
-        return deferred.promise;
     };
 
     UtilData.saveDataToLocalStorage = function(data) {
