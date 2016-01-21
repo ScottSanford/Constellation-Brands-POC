@@ -1,4 +1,4 @@
-angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStorageService) {
+angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStorageService, $location) {
 
     var UtilData = {};
 
@@ -14,8 +14,21 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
 
         ds.fetch().done(function(){
             var jsonData = ds.toJSON();
-            deferred.resolve(jsonData);
-        })
+            UtilData.saveDataToLocalStorage(jsonData);
+            
+            var route = $location.path();
+
+            if (route == '/table') {
+                deferred.resolve(jsonData);
+            } else if (route == '/sales') {
+                var gs = UtilData.getSalesData(jsonData);
+                deferred.resolve(gs);
+            } else if (route == '/units') {
+                var gu = UtilData.getUnitsData(jsonData);
+                deferred.resolve(gu);
+            }
+
+        });
 
         return deferred.promise;
     }

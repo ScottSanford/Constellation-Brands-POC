@@ -24,21 +24,13 @@ angular.module('pieChartPOC')
     function initDataset() {
 
         UtilData.getGoogleWorkSheet().then(function(worksheet){
-            console.log(typeof worksheet);
-            var ds = new Miso.Dataset({
-                importer: Miso.Dataset.Importers.GoogleSpreadsheet,
-                parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
-                key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
-                worksheet: worksheet
-            });          
-            ds.fetch().done(function(){
-                var jsonData = ds.toJSON();
+            
+            UtilData.newData(worksheet).then(function(returnData){
 
-                console.log(jsonData);
-                UtilData.saveDataToLocalStorage(jsonData);
+                $scope.tableData = returnData;
 
-                $scope.tableData = jsonData;
             });
+         
         });
 
     };

@@ -12,12 +12,8 @@ angular.module('pieChartPOC')
         UtilData.getGoogleWorkSheet().then(function(worksheet){
             
             UtilData.newData(worksheet).then(function(returnData){
-         
-                UtilData.getSalesData(returnData).then(function(data){
-                    
-                    UtilData.pieChart(data.titleText, data.util);
-                    
-                });
+                             
+                UtilData.pieChart(returnData.titleText, returnData.util);
 
             });
          
