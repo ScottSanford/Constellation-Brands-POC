@@ -1,32 +1,28 @@
 <div class="dialog-container dialog-padding">
 		
 	<div class="dialog-title">
-		Please select below to output data.
+		Which type of wine supplier? 
 	</div>
-	<div class="row margin-top-50 text-center">
-		<div class="col-sm-6">
-			<button class="dialog-btn center-block">Club</button>
-		</div>
-		<div class="col-sm-6">
-			<button class="dialog-btn">Multi-Outlet</button>
-		</div>
-	</div>
-	<div class="row margin-top-50 text-center">
-		<div class="col-sm-4">
-			<button class="dialog-btn">52 Weeks</button>
-		</div>
-		<div class="col-sm-4">
-			<button class="dialog-btn">12 Weeks</button>
-		</div>	
-		<div class="col-sm-4">
-			<button class="dialog-btn">4 Weeks</button>
-		</div>
-	</div>
-	<div class="row margin-top-50">
-		<div class="pull-right">
-			<button class="dialog-btn">Cancel</button>
-			<button class="dialog-btn">Apply</button>
-		</div>	
+	<div class="row margin-top-15 text-center">
+
+		<form name="supplierForm">
+
+			<div class="col-sm-6" ng-repeat="s in suppliers">
+				<input type="radio" class="radio" name="supplier" 
+					id="{{s.value}}" 
+					ng-model="selectedS.s"
+					value="{{s}}" 
+					required>
+				<label for="{{s.value}}">{{s.name}}</label>
+			</div>
+				{{ radioValue }}
+				<button type="submit" class="pull-right margin-top-25 dialog-btn" 
+					ng-click="openSecondDialog(selectedS.s)">Next</button>
+				
+			
+		</form>
+
+
 	</div>
 
 </div>

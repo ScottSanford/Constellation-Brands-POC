@@ -50,11 +50,11 @@
     </thead>
   	<tr dir-paginate="table in tableData | orderBy:sortType:sortReverse | filter:searchData | itemsPerPage:10">
     	<td>{{ table.Supplier }}</td>
-    	<td>{{ table.$Share }}</td>		    	
-    	<td>{{ table.$Sales }}</td>		    	
+    	<td>{{ table.$Share * 100 | number:0}}</td>		    	
+    	<td>${{ table.$Sales | number }}</td>		    	
     	<td>{{ table.$SalesChg * 100 | number:0}}%</td>
     	<td>{{ table.UnitShare * 100 | number:0}}%</td>
-    	<td>{{ table.Units }}</td>
+    	<td>{{ table.Units | number }}</td>
     	<td>{{ table.UnitsChg * 100 | number:0}}%</td>
   	</tr>
 </table>

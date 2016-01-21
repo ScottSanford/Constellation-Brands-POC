@@ -9,6 +9,10 @@
 /*	border:1px solid red;*/
 }
 
+.margin-top-10 {
+    margin-top:10px;
+}
+
 .margin-top-15 {
 	margin-top:15px;
 }
@@ -75,6 +79,7 @@ tr:nth-child(even) {
 
 .nav-tabs > li > a:hover {
     background: #f0a049;
+    color:#fff;
 }
 
 #pieChartSales, #pieChartUnits {
@@ -126,7 +131,7 @@ tr:nth-child(even) {
     border:1px solid #FEC34E;
     color:#000;
     text-transform: uppercase;
-    padding:10px 20px;
+    padding:8px 20px;
 }
 
 .dialog-btn:hover {
@@ -134,7 +139,64 @@ tr:nth-child(even) {
     background: #FEC34E;
 }
 
+label {
+  width: 200px;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4
+}
 
+/* hide input */
+input.radio:empty {
+    margin-left: -999px;
+}
+
+/* style label */
+input.radio:empty ~ label {
+    position: relative;
+    line-height: 2.5em;
+    text-indent: 2em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input.radio:empty ~ label:before {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 2.5em;
+    background: #D1D3D4;
+    border-radius: 3px 0 0 3px;
+    color:#777;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+    content:'\2714';
+    text-indent: .1em;
+    color: #C2C2C2;
+}
+
+input.radio:hover:not(:checked) ~ label {
+    color: #888;
+}
+
+/* toggle on */
+input.radio:checked ~ label:before {
+    content:'\2714';
+    text-indent: .1em;
+    color: #fff;
+    background-color: #f0a049;
+}
+
+input.radio:checked ~ label {
+    color: #000;
+}
 
 
 

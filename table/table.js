@@ -2,12 +2,12 @@ angular.module('pieChartPOC')
 
 .controller('TableCtrl', function($scope, UtilData, ngDialog){
 
-    // ngDialog.openConfirm({
-    //     template: 'table/dialog/dialog.html',
-    //     className: 'ngdialog-theme-default', 
-    //     controller: 'DialogCtrl', 
-    //     scope: $scope
-    // });
+    ngDialog.openConfirm({
+        template: 'table/dialog/dialog.html',
+        className: 'ngdialog-theme-default', 
+        controller: 'DialogCtrl', 
+        scope: $scope
+    });
 
     $scope.sortType    = 'Supplier';
     $scope.sortReverse = false;
@@ -26,19 +26,9 @@ angular.module('pieChartPOC')
 
         ds.fetch().done(function(){
             var jsonData = ds.toJSON();
-            console.log(jsonData);
             $scope.tableData = jsonData;
         });
 
     };
-
-    function fetchSuccess() {
-
-        var jsonData = ds.toJSON();
-        console.log(jsonData);
-
-        $scope.tableData = jsonData;
-
-    }
 
 });
