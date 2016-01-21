@@ -1,30 +1,27 @@
 angular.module('pieChartPOC')
 
-.controller('SalesCtrl', function($scope, UtilData, $location){
+.controller('SalesCtrl', function($scope, UtilData, $location, localStorageService){
+
+    var savedData = UtilData.getSavedData();
+
 
     initDataset();      
 
    	function initDataset() {
 
-        ds = new Miso.Dataset({
-            importer: Miso.Dataset.Importers.GoogleSpreadsheet,
-            parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
-            key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
-            worksheet: UtilData.getGoogleWorkSheet()
-        });
+        UtilData.getGoogleWorkSheet().then(function(worksheet){
+            
+            UtilData.newData(worksheet).then(function(returnData){
+         
+                UtilData.getSalesData(returnData).then(function(data){
+                    
+                    UtilData.pieChart(data.titleText, data.util);
+                    
+                });
 
-        ds.fetch().done(fetchSuccess);
+            });
+         
+        });
 
     };
-
-    function fetchSuccess() {
-
-        var jsonData = ds.toJSON();
-
-        UtilData.getSalesData(jsonData).then(function(data){
-            
-            UtilData.pieChart(data.titleText, data.util);
-            
-        });
-    }
 });

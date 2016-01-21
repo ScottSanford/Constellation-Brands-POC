@@ -1,6 +1,24 @@
 angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStorageService) {
 
     var UtilData = {};
+
+    UtilData.newData = function(worksheet) {
+        var deferred = $q.defer();
+
+        var ds = new Miso.Dataset({
+                importer: Miso.Dataset.Importers.GoogleSpreadsheet,
+                parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
+                key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
+                worksheet: worksheet
+            });
+
+        ds.fetch().done(function(){
+            var jsonData = ds.toJSON();
+            deferred.resolve(jsonData);
+        })
+
+        return deferred.promise;
+    }
     
     UtilData.getSalesData = function(jsonData) {
         var deferred = $q.defer();

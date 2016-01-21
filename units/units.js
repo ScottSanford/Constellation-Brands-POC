@@ -5,30 +5,22 @@ angular.module('pieChartPOC')
     initDataset();
     var arr;           
 
-   function initDataset() {
+    function initDataset() {
 
-        ds = new Miso.Dataset({
-            importer: Miso.Dataset.Importers.GoogleSpreadsheet,
-            parser: Miso.Dataset.Parsers.GoogleSpreadsheet,
-            key: "1vcoebXyq6-pLyrAbxFjVnPezQOXksQJVXtDfLaDFt4c",
-            worksheet: UtilData.getGoogleWorkSheet()
+        UtilData.getGoogleWorkSheet().then(function(worksheet){
+            
+            UtilData.newData(worksheet).then(function(returnData){
+         
+                UtilData.getUnitsData(returnData).then(function(data){
+                    
+                    UtilData.pieChart(data.titleText, data.util);
+                    
+                });
+
+            });
+         
         });
-
-        ds.fetch().done(fetchSuccess);
 
     };
-
-    function fetchSuccess() {
-
-        var jsonData = ds.toJSON();
-
-        UtilData.getUnitsData(jsonData).then(function(data){
-            
-            UtilData.pieChart(data.titleText, data.util);
-
-        });
-        
-
-    }
 
 });
