@@ -1,9 +1,10 @@
 angular.module('pieChartPOC')
 
-.controller('SalesCtrl', function($scope, UtilData, $location, localStorageService){
+.controller('SalesCtrl', function($scope, $rootScope, UtilData, $location, localStorageService){
 
-    var savedData = UtilData.getSavedData();
-
+	$rootScope.isActive = function(route) {
+        return route === $location.path();
+    };
 
     initDataset();      
 
@@ -12,4 +13,6 @@ angular.module('pieChartPOC')
         UtilData.getGoogleWorkSheetData();
 
     };
+
+    $scope.sumTotal = UtilData.sumTotal();
 });

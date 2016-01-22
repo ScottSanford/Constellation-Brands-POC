@@ -1,15 +1,19 @@
 angular.module('pieChartPOC')
 
-.controller('UnitsCtrl', function($scope, UtilData, $location){
+.controller('UnitsCtrl', function($scope, $rootScope, UtilData, $location){
 
-    // if ls is true get data from there else just run normal initDataSet
-    initDataset();
-    var arr;           
+	$scope.isActive = function(route) {
+        return route === $location.path();
+    };
+
+    initDataset();     
 
     function initDataset() {
 
       UtilData.getGoogleWorkSheetData();
 
     };
+
+    $scope.sumTotal = UtilData.sumTotal();
 
 });

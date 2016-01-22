@@ -1,7 +1,7 @@
 angular.module('pieChartPOC')
 
 
-.controller('DialogCtrl',function ($scope, ngDialog, localStorageService) {
+.controller('DialogCtrl',function ($scope, $rootScope, ngDialog, localStorageService, UtilData) {
 		
 	$scope.suppliers = [
 		{
@@ -53,10 +53,13 @@ angular.module('pieChartPOC')
 	
 		localStorageService.set('value', $scope.ngDialogData.value);
 
-		var name = localStorageService.get('name');
-		var value = localStorageService.get('value');
+		var name      = localStorageService.get('name');
+		var value     = localStorageService.get('value');
+
+		UtilData.whichWorkSheet(name, value);
 
 		ngDialog.close();		
+
 	};
 
 	$scope.closeDialog = function() {

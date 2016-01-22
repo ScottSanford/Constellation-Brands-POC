@@ -64,7 +64,7 @@ tr:nth-child(even) {
 
 
 =========================================================================*/
-.nav-tabs > li.active > a {
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
     background-color:#f0a049;
     color:#fff;
 }
@@ -75,11 +75,6 @@ tr:nth-child(even) {
     text-transform: uppercase;
     font-weight: 700;
     color:#000;
-}
-
-.nav-tabs > li > a:hover {
-    background: #f0a049;
-    color:#fff;
 }
 
 #pieChartSales, #pieChartUnits {
