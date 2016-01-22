@@ -54,12 +54,12 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             
             var route = $location.path();
 
-            if (route == '/table') {
-                return;
-            } else if (route == '/sales') {
+            if (route == '/sales') {
                 UtilData.getSalesData(jsonData);
             } else if (route == '/units') {
                 UtilData.getUnitsData(jsonData);
+            } else if (route == '/table') {
+                return;
             }
 
         });

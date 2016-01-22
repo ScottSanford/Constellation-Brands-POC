@@ -6,31 +6,11 @@ angular.module('pieChartPOC')
         return route === $location.path();
     };
 
-    var name  = localStorageService.get('name');
-    var value = localStorageService.get('value');
-    var db    =  ngDialog.openConfirm({
-            template: 'table/dialog/dialog.html',
-            className: 'ngdialog-theme-default', 
-            controller: 'DialogCtrl', 
-            scope: $scope
-    });
-
-    if (name == null & value == null) {
-        $scope.tableData = UtilData.getGoogleWorkSheetData(db);
-    } else {
-        initDataset();
-    }
+    var savedData = localStorageService.get('savedData');
 
     $scope.sortType    = 'Supplier';
     $scope.sortReverse = false;
     $scope.searchData  = '';        
-
-    function initDataset() {
-
-        var savedData = localStorageService.get('savedData');
-
-        $scope.tableData = savedData;
-
-    };
+    $scope.tableData = savedData;
 
 });
