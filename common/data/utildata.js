@@ -20,7 +20,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
 
     UtilData.whichWorkSheet = function(name, value) {
         if (name == "Club" && value == 4) {
-            var wksht = "1";             
+            var wksht = "1";
             UtilData.asyncRequest(wksht);
         } else if (name == "Club" && value == 12) {
             var wksht = "2";
@@ -55,11 +55,17 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             var route = $location.path();
 
             if (route == '/sales') {
+
                 UtilData.getSalesData(jsonData);
+
             } else if (route == '/units') {
+                
                 UtilData.getUnitsData(jsonData);
+                
             } else if (route == '/table') {
+                
                 return;
+
             }
 
         });

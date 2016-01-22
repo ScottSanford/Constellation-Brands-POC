@@ -6,6 +6,10 @@ angular.module('pieChartPOC')
         return route === $location.path();
     };
 
+    $scope.chooseData = function() {
+    	console.log('clicked');
+    }
+
     var name  = localStorageService.get('name');
     var value = localStorageService.get('value');
     var db    =  ngDialog.openConfirm({
@@ -26,6 +30,8 @@ angular.module('pieChartPOC')
 
         UtilData.getGoogleWorkSheetData();
         $scope.sumTotal = UtilData.sumTotal();
+        $scope.outlet   = name;
+        $scope.weeks    = value;
 
     };
 
