@@ -28,7 +28,8 @@ angular.module('pieChartPOC')
 	        template: 'dialog/seconddialog.html',
 	        className: 'ngdialog-theme-default', 
 	        controller: 'DialogCtrl', 
-	        scope: $scope
+	        scope: $scope, 
+	        showClose: false
     	});
 
 	};

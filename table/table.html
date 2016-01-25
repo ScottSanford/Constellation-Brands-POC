@@ -4,14 +4,14 @@
       <li role="presentation"><a href="#/sales"><i class="fa fa-pie-chart"></i> Sales</a></li>
       <li role="presentation"><a href="#/units"><i class="fa fa-pie-chart"></i> Units</a></li>
       <li role="presentation" class="active"><a href="#/table"><i class="fa fa-table"></i> Table</a></li>
-      <li role="presentation" class="pull-right"><a href="#/table"><i class="fa fa-floppy-o fa-2x"></i></a></li>
+      <li role="presentation" class="pull-right"><a href=""><i class="fa fa-floppy-o fa-2x"></i></a></li>
       <li role="presentation" class="pull-right"><a href="#/dialog"><i class="fa fa-plus"></i> New</a></li>
     </ul>
     
 </div>
 
 <div class="row">
-    <div class="pull-left margin-left-15 font-size-20 font-weight-bold">Wine Sales ({{outlet}} - {{weeks}} Weeks)</div>	
+    <div class="pull-left font-size-20 font-weight-bold">Wine Sales ({{outlet}} - {{weeks}} Weeks)</div>	
 </div>
 <form class="margin-top-25">
   <div class="form-group">
@@ -62,7 +62,7 @@
             </th>
         </tr>
     </thead>
-  	<tr dir-paginate="table in tableData | orderBy:sortType:sortReverse | filter:searchData | itemsPerPage:7">
+  	<tr dir-paginate="table in tableData | orderBy:sortType:sortReverse | filter:searchData | itemsPerPage:6">
     	<td>{{ table.Supplier }}</td>
     	<td>{{ table.$Share * 100 | number:0}}%</td>		    	
     	<td>${{ table.$Sales | number }}</td>		    	

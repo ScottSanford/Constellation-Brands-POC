@@ -86,10 +86,11 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
 
         var obj = {
             util: dataArr,
-            titleText: '$ Sales'
+            titleText: '$ Sales', 
+            tooltip: '$'
         }
 
-        var chart = UtilData.pieChart(obj.titleText, obj.util);
+        var chart = UtilData.pieChart(obj.titleText, obj.util, obj.tooltip);
 
         return chart;
 
@@ -109,15 +110,16 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
 
         var obj = {
             util: dataArr,
-            titleText: 'Units'
+            titleText: 'Units', 
+            tooltip: 'Units: '
         }
 
-        var chart = UtilData.pieChart(obj.titleText, obj.util);
+        var chart = UtilData.pieChart(obj.titleText, obj.util, obj.tooltip);
 
         return chart;
     };
 
-    UtilData.pieChart = function(titleText, dataPoints) {
+    UtilData.pieChart = function(titleText, dataPoints, tooltip) {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'pieChart', 
@@ -137,7 +139,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.point.name + '</b>: $' + this.point.tooltip;
+                    return '<b>' + this.point.name + '</b>: ' + tooltip + this.point.tooltip;
                 }
             },
             plotOptions: {
@@ -149,7 +151,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
                         color: '#000000',
                         connectorColor: '#F4C74E',
                         formatter: function () {
-                            return '<b>' + this.point.name + '</b>: ' + this.point.tooltip;
+                            return '<b>' + this.point.name + '</b>: '  + tooltip + this.point.tooltip;
                         }
                     }
                 }

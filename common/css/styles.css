@@ -25,6 +25,10 @@
 	margin-top:100px;
 }
 
+.margin-top-300 {
+    margin-top:300px;
+}
+
 .margin-left-15 {
     margin-left:15px;
 }
@@ -58,6 +62,11 @@
 
 tr:nth-child(even) {
     color:#f0a049;
+}
+
+.vcenter {
+    display: flex;
+    align-items: center;
 }
 
 

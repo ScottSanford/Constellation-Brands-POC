@@ -7,7 +7,8 @@ angular.module('pieChartPOC')
         template: 'dialog/dialog.html',
         className: 'ngdialog-theme-default', 
         controller: 'DialogCtrl', 
-        scope: $scope
+        scope: $scope, 
+        showClose: false
    	});
 
 });
