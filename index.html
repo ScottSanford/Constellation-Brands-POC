@@ -23,10 +23,7 @@
         </div>
 
         <nav id="menu">
-             <ul>
-                <li class="choose-data" ng-click="chooseData()">
-                  <i class="fa fa-check"></i> <span class="menu-item">Choose Data</span>
-                </li>                
+             <ul>         
                 <li class="view-data">
                   <i class="fa fa-database"></i><span class="menu-item">View Data</span>
                 </li>                  
@@ -45,19 +42,10 @@
         <div class="container">
 
             <div class="row">
-                <img class="logo" src="images/logo.png">
+                <img src="images/logo.png" class="logo">
             </div>
 
-            <div class="row">
-
-                <ul class="nav nav-tabs margin-top-50">
-                  <li role="presentation" ng-class="{active: isActive('/sales')}"><a href="#/sales">Sales</a></li>
-                  <li role="presentation" ng-class="{active: isActive('/units')}"><a href="#/units">Units</a></li>
-                  <li role="presentation" ng-class="{active: isActive('/table')}"><a href="#/table">Table</a></li>
-                </ul>
-                <div ng-view></div>
-
-            </div>
+            <div ng-view></div>
 
         </div>   
 
@@ -91,10 +79,25 @@
         <script src="common/data/utildata.js"></script>
 
         <!-- Controllers -->
-        <script src="table/dialog/dialog.js"></script>
-        <script src="table/table.js"></script>
+        <script src="beginning/beginning.js"></script>
+        <script src="dialog/dialog-container.js"></script>
+        <script src="dialog/dialog-controller.js"></script>
         <script src="sales/sales.js"></script>
         <script src="units/units.js"></script>
+        <script src="table/table.js"></script>
+        <script>
+        $(document).ready(function(){
+            // Uses document because document will be topmost level in bubbling
+            $(document).on('touchmove',function(e){
+                e.preventDefault();
+            });
+
+            // init FastClick.js
+            $(function() {
+                FastClick.attach(document.body);
+            });
+        });
+        </script>
 
     </body>
 </html>

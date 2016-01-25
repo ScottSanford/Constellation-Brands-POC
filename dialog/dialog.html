@@ -1,19 +1,19 @@
 <div class="dialog-container dialog-padding">
 		
 	<div class="dialog-title">
-		Which type of wine supplier? 
+		Select a wine supplier.
 	</div>
 	<div class="row margin-top-15 text-center">
 
 		<form name="supplierForm">
 
-			<div class="col-sm-6" ng-repeat="s in suppliers">
+			<div class="col-sm-6" ng-repeat="supplier in suppliers">
 				<input type="radio" class="radio" name="supplier" 
-					id="{{s.id}}" 
+					id="{{supplier.id}}" 
 					ng-model="ngDialogData.name"
-					value="{{s.name}}" 
+					value="{{supplier.name}}" 
 					required>
-				<label for="{{s.id}}">{{s.name}}</label>
+				<label for="{{supplier.id}}">{{supplier.name}}</label>
 			</div>
 				
 			<button type="submit" class="pull-right margin-top-25 dialog-btn" 

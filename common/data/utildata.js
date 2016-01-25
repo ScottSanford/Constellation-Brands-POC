@@ -78,7 +78,8 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
         for (var i = 0; i < jsonData.length; i++) {
             var obj = {
                 name: jsonData[i].Supplier, 
-                y: jsonData[i].$Share
+                y: jsonData[i].$Share,
+                tooltip: jsonData[i].$Sales,
             }
             dataArr.push(obj);
         }
@@ -100,7 +101,8 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
         for (var i = 0; i < jsonData.length; i++) {
             var obj = {
                 name: jsonData[i].Supplier, 
-                y: jsonData[i].UnitShare
+                y: jsonData[i].UnitShare, 
+                tooltip: jsonData[i].Units
             }
             dataArr.push(obj);
         }
@@ -135,7 +137,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.point.name + '</b>:' + (this.percentage).toFixed(2) + '%';
+                    return '<b>' + this.point.name + '</b>: $' + this.point.tooltip;
                 }
             },
             plotOptions: {
@@ -147,7 +149,7 @@ angular.module('pieChartPOC').factory('UtilData', function($http, $q, localStora
                         color: '#000000',
                         connectorColor: '#F4C74E',
                         formatter: function () {
-                            return '<b>' + this.point.name + '</b>: ' + (this.percentage).toFixed(2) + '%';
+                            return '<b>' + this.point.name + '</b>: ' + this.point.tooltip;
                         }
                     }
                 }

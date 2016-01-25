@@ -40,6 +40,10 @@
     font-weight: bold;
 }
 
+.display-block {
+    display: block;
+}
+
 .colorRed {
     color:#ff0000;
 }
@@ -64,6 +68,33 @@ tr:nth-child(even) {
     right:0px;
     top:0px;
 }
+
+.menu-link, .menu-link:hover {
+    color:#000;
+    text-decoration: none;
+}
+
+.menu-link:active {
+    color:#f0a049;
+    text-decoration: none;
+}
+
+
+/*=========================================================================
+
+
+                            Beginning Page Styles
+
+
+=========================================================================*/
+.beg-titles {
+    font-size:20px;
+}
+
+li.active a i {
+    color:#fff;
+}
+
 /*=========================================================================
 
 

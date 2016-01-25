@@ -9,6 +9,14 @@ angular.module("pieChartPOC", [
         .config(function ($routeProvider, $compileProvider) { 
               $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/entry|http:\/\/)/);  
               $routeProvider
+                .when('/', {
+                    templateUrl: 'beginning/beginning.html', 
+                    controller: 'BeginningCtrl'
+                })  
+                .when('/dialog', {
+                    templateUrl: 'dialog/dialog-container.html', 
+                    controller: 'DialogContainerCtrl'
+                })   
                 .when('/sales', {
                     templateUrl: 'sales/sales.html', 
                     controller: 'SalesCtrl'
@@ -22,6 +30,6 @@ angular.module("pieChartPOC", [
                     controller: 'TableCtrl'
                 })                
                 .otherwise({
-                    redirectTo: '/sales'
+                    redirectTo: '/'
                 });
         });

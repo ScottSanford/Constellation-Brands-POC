@@ -1,10 +1,6 @@
 angular.module('pieChartPOC')
 
-.controller('TableCtrl', function($scope, $rootScope, UtilData, ngDialog, localStorageService){
-
-    $scope.isActive = function(route) {
-        return route === $location.path();
-    };
+.controller('TableCtrl', function($scope, UtilData, ngDialog, localStorageService){
 
     var name      = localStorageService.get('name');
     var value     = localStorageService.get('value');
